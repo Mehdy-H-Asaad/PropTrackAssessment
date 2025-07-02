@@ -1,5 +1,5 @@
 import { Property } from "../../models/property.model";
-import { NEXT, REQUEST, RESPONSE, TStatus } from "../../types/server.types";
+import { NEXT, REQUEST, RESPONSE, EStatus } from "../../types/server.types";
 
 export const getProperties = async (
 	req: REQUEST,
@@ -58,7 +58,7 @@ export const getProperties = async (
 		const total = await Property.countDocuments(query);
 
 		res.status(200).json({
-			status: TStatus.SUCCESS,
+			status: EStatus.SUCCESS,
 			data: properties,
 			totalPages: Math.ceil(total / limitNumber),
 			page: pageNumber,
