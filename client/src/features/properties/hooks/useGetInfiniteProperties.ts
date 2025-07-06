@@ -4,30 +4,36 @@ import { TPropertyDTO } from "../types/property.types";
 import { usePropertyFiltersStore } from "../store/property-filters.store";
 
 type ServerResponse = {
+	status: string;
 	data: TPropertyDTO[];
-	totalPages: number;
-	page: number;
-	limit: number;
 	totalResults: number;
+	totalPages?: number;
+	page?: number;
+	limit?: number;
 };
 
 export const useGetInfiniteProperties = () => {
 	const { filters } = usePropertyFiltersStore();
 
 	const query = useInfiniteQuery({
-		queryKey: ["properties", filters],
+		queryKey: ["properties", JSON.stringify(filters)],
 		queryFn: async ({ pageParam = 1 }) => {
-			const response = await axiosClient.get("/properties", {
+			const response = await axiosClient.get("/properties?active=true", {
 				params: {
 					...filters,
 					page: pageParam,
 					limit: 10,
+					pagination: "true",
 				},
 			});
 			return response.data;
 		},
 		getNextPageParam: (lastPage: ServerResponse) => {
-			if (lastPage.page < lastPage.totalPages) {
+			if (
+				lastPage.page &&
+				lastPage.totalPages &&
+				lastPage.page < lastPage.totalPages
+			) {
 				return lastPage.page + 1;
 			}
 			return undefined;
@@ -35,7 +41,6 @@ export const useGetInfiniteProperties = () => {
 		initialPageParam: 1,
 	});
 
-	// Flatten all pages into a single array
 	const properties = query.data?.pages.flatMap(page => page.data) ?? [];
 
 	return {
