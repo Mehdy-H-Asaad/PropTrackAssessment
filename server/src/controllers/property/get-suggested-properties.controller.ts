@@ -17,9 +17,8 @@ export const getSuggestedProperties = async (
 
 		const suggestedProperties = await Property.find({
 			_id: { $ne: id },
-			propertyType: property.propertyType,
 			location: property.location,
-			price: { $gte: property.price - 10000, $lte: property.price + 10000 },
+			active: true,
 		});
 
 		res.status(200).json({
