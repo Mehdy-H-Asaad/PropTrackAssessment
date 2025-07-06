@@ -1,14 +1,19 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { Loader2 } from "lucide-react";
 
 type TMainButtonProps = {
 	children: React.ReactNode;
 	disabled?: boolean;
+	isLoading?: boolean;
+	loadingText?: string;
 } & React.ComponentProps<typeof Button>;
 
 export const MainButton = ({
 	children,
 	className,
+	isLoading,
+	loadingText,
 	...props
 }: TMainButtonProps) => {
 	return (
@@ -19,7 +24,14 @@ export const MainButton = ({
 			)}
 			{...props}
 		>
-			{children}
+			{isLoading ? (
+				<div className="flex items-center gap-2">
+					<Loader2 className="animate-spin" />
+					<span>{loadingText}</span>
+				</div>
+			) : (
+				<>{children}</>
+			)}
 		</Button>
 	);
 };
