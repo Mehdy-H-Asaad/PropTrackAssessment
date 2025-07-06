@@ -9,7 +9,7 @@ A comprehensive real estate management platform built with React, TypeScript, an
 
 ## 📸 Project Showcase
 
-- **📹 Demo Video**: [Watch the full demo]([https://drive.google.com/drive/u/2/folders/169CKa2g5kwwrFUySSbJ3nX41XXn7EzLH](https://drive.google.com/drive/u/2/folders/169CKa2g5kwwrFUySSbJ3nX41XXn7EzLH))
+- **📹 Demo Video**: [Watch the full demo](https://drive.google.com/file/d/18JZ1XohHTEmIQyP18aBKnUFZHJpXAsRV/view?usp=sharing)
 - **🖼️ Screenshots**: [View all screenshots](https://drive.google.com/drive/folders/169CKa2g5kwwrFUySSbJ3nX41XXn7EzLH?usp=drive_link)
 
 ## 🏠 Live Demo
