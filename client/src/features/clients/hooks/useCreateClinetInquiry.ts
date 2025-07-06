@@ -1,20 +1,17 @@
 import { useApiMutation } from "@/shared/hooks/useApiMutation";
 import { TClientInquiryDTO } from "../types/client.types";
-import {
-	clientInquirySchema,
-	TCreateClientInquiryDTO,
-} from "../schema/client-inquiry.schema";
+import { clientInquirySchema, TCreateClientInquiryDTO } from "../index";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-export const useCreateClientInquiry = () => {
+export const useCreateClientInquiry = (id: string) => {
 	const { mutate, isPending } = useApiMutation<
 		TClientInquiryDTO,
 		TCreateClientInquiryDTO
 	>({
 		queryKey: ["client-inquiry"],
 		axiosRequestMethod: "post",
-		requestURL: "/clients/inquiries/create-inquiry",
+		requestURL: `/clients/inquiries/${id}`,
 		successMsg: "Inquiry created successfully",
 	});
 
