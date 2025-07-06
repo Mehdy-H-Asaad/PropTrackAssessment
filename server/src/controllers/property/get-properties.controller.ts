@@ -17,7 +17,11 @@ export const getProperties = async (
 		bedrooms,
 		bathrooms,
 		area,
+		active,
 	} = req.query;
+
+	const { pagination = "false" } = req.query;
+	const usePagination = pagination !== "false";
 
 	const pageNumber = Number(page) || 1;
 	const limitNumber = Number(limit) || 10;
@@ -38,7 +42,7 @@ export const getProperties = async (
 	) {
 		query.propertyType = { $regex: propertyType.trim(), $options: "i" };
 	}
-	if (bedrooms && !isNaN(Number(bedrooms))) {
+	if (bedrooms !== undefined && !isNaN(Number(bedrooms))) {
 		query.bedrooms = Number(bedrooms);
 	}
 	if (bathrooms && !isNaN(Number(bathrooms))) {
@@ -53,18 +57,32 @@ export const getProperties = async (
 	if (maxPrice && !isNaN(Number(maxPrice))) {
 		query.price = { $lte: Number(maxPrice) };
 	}
-	try {
-		const properties = await Property.find(query).skip(skip).limit(limitNumber);
-		const total = await Property.countDocuments(query);
+	if (active && typeof active === "string") {
+		query.active = active === "true";
+	}
 
-		res.status(200).json({
+	try {
+		let properties, total;
+		if (usePagination) {
+			properties = await Property.find(query).skip(skip).limit(limitNumber);
+			total = await Property.countDocuments(query);
+		} else {
+			properties = await Property.find(query);
+			total = properties.length;
+		}
+
+		const response: any = {
 			status: EStatus.SUCCESS,
 			data: properties,
-			totalPages: Math.ceil(total / limitNumber),
-			page: pageNumber,
-			limit: limitNumber,
 			totalResults: total,
-		});
+		};
+		if (usePagination) {
+			response.totalPages = Math.ceil(total / limitNumber);
+			response.page = pageNumber;
+			response.limit = limitNumber;
+		}
+
+		res.status(200).json(response);
 	} catch (error) {
 		next(error);
 	}

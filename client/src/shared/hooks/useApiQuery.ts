@@ -31,7 +31,7 @@ export const useApiQuery = <TResponse>({
 	...queryOptions
 }: TUseApiQueryOptions<TServerResponse<TResponse>>) => {
 	const query = useQuery<TServerResponse<TResponse>>({
-		queryKey,
+		queryKey: [...queryKey],
 		queryFn: async () => {
 			try {
 				const { data }: { data: TServerResponse<TResponse> } =

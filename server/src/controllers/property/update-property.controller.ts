@@ -1,6 +1,7 @@
 import { Property } from "../../models/property.model";
 import { NEXT, REQUEST, RESPONSE, EStatus } from "../../types/server.types";
 import { ApiError } from "../../utils/api-error";
+import { TUpdatePropertyDTO } from "../../types/property/property.types";
 
 export const updateProperty = async (
 	req: REQUEST,
@@ -8,7 +9,7 @@ export const updateProperty = async (
 	next: NEXT
 ) => {
 	const { id } = req.params;
-	console.log(id);
+
 	const {
 		title,
 		description,
@@ -21,11 +22,18 @@ export const updateProperty = async (
 		bedrooms,
 		bathrooms,
 		area,
-	} = req.body;
+	}: TUpdatePropertyDTO = req.body;
 
 	try {
 		if (id === undefined) {
 			throw new ApiError(400, "Property ID is required");
+		}
+
+		if (
+			bedrooms !== undefined &&
+			(typeof bedrooms !== "number" || bedrooms < 0)
+		) {
+			throw new ApiError(400, "Bedrooms must be a non-negative number");
 		}
 
 		const property = await Property.findByIdAndUpdate(

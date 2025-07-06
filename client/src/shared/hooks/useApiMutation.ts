@@ -1,7 +1,7 @@
 import { toast } from "sonner";
 import {
 	MutationKey,
-	QueryClient,
+	useQueryClient,
 	QueryKey,
 	useMutation,
 	UseMutationOptions,
@@ -28,8 +28,6 @@ type TUseApiMutation<TData, TVariables, TContext> = {
 	"mutationFn" | "mutationKey"
 >;
 
-const queryClient = new QueryClient();
-
 export const useApiMutation = <TData, TVariables = void, TContext = unknown>({
 	mutationKey,
 	axiosRequestMethod,
@@ -39,6 +37,7 @@ export const useApiMutation = <TData, TVariables = void, TContext = unknown>({
 	queryKey,
 	...mutationOptions
 }: TUseApiMutation<TData, TVariables, TContext>) => {
+	const queryClient = useQueryClient();
 	const mutation = useMutation({
 		mutationKey: mutationKey,
 		mutationFn: async (values: TVariables) => {
@@ -65,7 +64,7 @@ export const useApiMutation = <TData, TVariables = void, TContext = unknown>({
 		},
 		...mutationOptions,
 		onSuccess: (data, variables, context) => {
-			queryClient.invalidateQueries({ queryKey: queryKey });
+			queryClient.invalidateQueries({ queryKey: queryKey, exact: false });
 			toast.success(successMsg);
 			mutationOptions?.onSuccess?.(data, variables, context);
 		},

@@ -14,12 +14,14 @@ export const getClientsInquiries = async (
 
 		const query: Record<string, any> = {};
 
-		const clients = await Client.find(query).skip(skip).limit(limitNumber);
+		const clients = await Client.find(query)
+			.skip(skip)
+			.limit(limitNumber)
+			.populate("propertyId");
 
 		res.status(200).json({
 			status: EStatus.SUCCESS,
-			message: "Clients inquiries fetched successfully",
-			clients,
+			data: clients,
 		});
 	} catch (error) {
 		next(error);

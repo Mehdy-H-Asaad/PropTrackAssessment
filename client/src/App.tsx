@@ -1,14 +1,11 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Navbar } from "./components/layout/Navbar";
-import { PropertyListing } from "./features/properties/components/property-listing";
+import { BrowserRouter } from "react-router-dom";
+
+import { AppRoutes } from "./AppRoutes";
 
 function App() {
 	return (
 		<BrowserRouter>
-			<Navbar />
-			<Routes>
-				<Route path="/" element={<PropertyListing />} />
-			</Routes>
+			<AppRoutes />
 		</BrowserRouter>
 	);
 }

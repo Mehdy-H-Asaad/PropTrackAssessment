@@ -7,7 +7,7 @@ import {
 	DialogFooter,
 	DialogDescription,
 } from "@/components/ui/dialog";
-import { useCreateClientInquiry } from "../hooks/useCreateClinetInquiry";
+import { useCreateClientInquiry } from "../../index";
 import { Form, FormControl, FormLabel } from "@/components/ui/form";
 import { FormField, FormMessage } from "@/components/ui/form";
 import { FormItem } from "@/components/ui/form";
@@ -16,12 +16,12 @@ import { Input } from "@/components/ui/input";
 import { MainButton } from "@/components/common/main-button";
 import { FaEnvelope } from "react-icons/fa6";
 
-export const CreateClientInquiry = () => {
+export const CreateClientInquiry = ({ id }: { id: string }) => {
 	const {
 		CreateClientInquiryForm,
 		onCreateClientInquiry,
 		isCreateClientInquiryPending,
-	} = useCreateClientInquiry();
+	} = useCreateClientInquiry(id);
 	return (
 		<Dialog>
 			<DialogTrigger className="bg-[#f0f6fe] flex items-center gap-2  py-2 px-4 rounded-lg w-fit">
