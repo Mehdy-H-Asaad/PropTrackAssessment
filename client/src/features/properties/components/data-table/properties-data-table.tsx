@@ -5,14 +5,8 @@ import { useGetProperties } from "../../hooks/useGetProperties";
 import { MainButton } from "@/components/common/main-button";
 import { Link } from "react-router-dom";
 import { PropertiesTableFilters } from "../property-filters/properties-table-filters";
-import { Skeleton } from "@/components/ui/skeleton";
-
 export const PropertiesDataTable = () => {
 	const { properties, isLoadingProperties } = useGetProperties({});
-
-	if (isLoadingProperties) {
-		return <Skeleton className="w-full h-[34rem] my-10 bg-neutral-200" />;
-	}
 
 	return (
 		<div>
