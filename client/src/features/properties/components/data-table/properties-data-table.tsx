@@ -10,9 +10,9 @@ import { Skeleton } from "@/components/ui/skeleton";
 export const PropertiesDataTable = () => {
 	const { properties, isLoadingProperties } = useGetProperties({});
 
-	// if (isLoadingProperties) {
-	// 	return <Skeleton className="w-full h-[34rem] my-10 bg-neutral-200" />;
-	// }
+	if (isLoadingProperties) {
+		return <Skeleton className="w-full h-[34rem] my-10 bg-neutral-200" />;
+	}
 
 	return (
 		<div>
@@ -23,7 +23,7 @@ export const PropertiesDataTable = () => {
 				searchablePlaceholder="Search by property name"
 				skeletonRows={10}
 				manualPagination={false}
-				isLoading={true}
+				isLoading={isLoadingProperties}
 			>
 				<PropertiesTableFilters />
 				<Link
