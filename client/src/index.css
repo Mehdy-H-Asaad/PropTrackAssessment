@@ -1,23 +1,80 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 @import "tailwindcss";
 @import "tw-animate-css";
 
 @custom-variant dark (&:is(.dark *));
 
-@font-face {
-	font-family: "NunitoSans";
-	src: url("./assets/fonts/NunitoSans-VariableFont_YTLC,opsz,wdth,wght.ttf")
-		format("truetype");
-	font-weight: 500;
-	font-style: normal;
+html {
+	scroll-behavior: smooth;
+}
+.hero-bg {
+	background-image: url("./assets/imgs/hero-bg.jpg");
+	background-repeat: no-repeat;
+	background-position: center;
+
+	background-size: cover;
+	position: relative;
 }
 
+.hero-bg::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+}
+
+.how-we-work-num {
+	position: relative;
+}
+.how-we-work-num::before {
+	content: "";
+	position: absolute;
+	background-color: #1180c6;
+	border: 5px solid #f1f5fa;
+	border-radius: 50%;
+	width: 20px;
+	height: 20px;
+	right: -4px;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.dark .how-we-work-num::before {
+	border: 5px solid var(--color-main-dark);
+}
+
+.nav-link {
+	position: relative;
+}
+
+.nav-link::before {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 2px;
+	background-color: #1180c6;
+	transition: 0.3s;
+}
+
+.nav-link:hover::before {
+	width: 100%;
+}
 @theme colors {
-	--color-main-blue: #007bff;
+	--color-main-blue: #1178e8;
+	--color-main-dark: #171717;
 }
 
 body {
 	@apply bg-background text-foreground;
-	font-family: "NunitoSans", sans-serif;
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+	font-weight: 500;
+	font-style: normal;
 }
 
 @utility container {
@@ -98,7 +155,7 @@ body {
 }
 
 .dark {
-	--background: oklch(0.145 0 0);
+	--background: #121211;
 	--foreground: oklch(0.985 0 0);
 	--card: oklch(0.205 0 0);
 	--card-foreground: oklch(0.985 0 0);
