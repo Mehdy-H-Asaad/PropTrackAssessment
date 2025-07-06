@@ -115,8 +115,8 @@ A comprehensive real estate management platform built with React, TypeScript, an
 
    ```env
    PORT=5000
-   MONGODB_URI=your_mongodb_connection_string
-   DEEPSEEK_API_KEY=your_deepseek_api_key
+   MONGODB_URI=mongodb://localhost:27017/
+   DEEPSEEK_API_KEY=sk-22bd38c99ec84b34bcb9fe1817839831
    ```
 
    **Client (.env)**
