@@ -1,12 +1,14 @@
 export type TPropertyDTO = {
-	_id: string;
+	_id?: string;
 	title: string;
-	image: string[];
+	image?: string[];
 	type: "sale" | "rent";
 	price: number;
 	description: string;
 	location: string;
-	amenities: string[];
+	amenities?: {
+		value: string;
+	}[];
 	active?: boolean;
 	bedrooms: number;
 	bathrooms: number;
@@ -15,3 +17,5 @@ export type TPropertyDTO = {
 	createdAt?: Date;
 	updatedAt?: Date;
 };
+
+export type TUpdatePropertyDTO = Omit<TPropertyDTO, "createdAt" | "updatedAt">;

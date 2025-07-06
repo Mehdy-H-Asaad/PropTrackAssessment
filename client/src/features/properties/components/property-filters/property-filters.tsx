@@ -9,14 +9,14 @@ import {
 } from "@/components/ui/select";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
-import { usePropertyFiltersStore } from "../store/property-filters.store";
+import { usePropertyFiltersStore } from "../../store/property-filters.store";
 import {
 	BATHROOM_OPTIONS,
 	BEDROOM_OPTIONS,
 	LOCATIONS_OPTIONS,
 	PROPERTY_CATEGORIES,
 	PROPERTY_TYPES,
-} from "../data/property.data";
+} from "../../data/property.data";
 import { PriceRange } from "./price-range-filter";
 
 export const PropertyFilters = () => {
@@ -27,7 +27,7 @@ export const PropertyFilters = () => {
 	};
 
 	return (
-		<div className="my-4 rounded-lg bg-white p-8">
+		<div className="my-4 rounded-lg bg-white dark:bg-main-dark dark:text-white p-8">
 			<div className="flex justify-between items-center mb-6">
 				<h3 className="text-lg font-semibold">Filter Properties</h3>
 
@@ -56,8 +56,8 @@ export const PropertyFilters = () => {
 							<SelectGroup>
 								<SelectLabel>Property Types</SelectLabel>
 								{PROPERTY_TYPES.map(type => (
-									<SelectItem key={type} value={type}>
-										{type.charAt(0).toUpperCase() + type.slice(1)}
+									<SelectItem key={type.value} value={type.value}>
+										{type.label}
 									</SelectItem>
 								))}
 							</SelectGroup>
@@ -78,8 +78,8 @@ export const PropertyFilters = () => {
 						<SelectContent>
 							<SelectGroup>
 								{PROPERTY_CATEGORIES.map(category => (
-									<SelectItem key={category} value={category}>
-										{category.charAt(0).toUpperCase() + category.slice(1)}
+									<SelectItem key={category.value} value={category.value}>
+										{category.label}
 									</SelectItem>
 								))}
 							</SelectGroup>
@@ -103,8 +103,8 @@ export const PropertyFilters = () => {
 							<SelectGroup>
 								<SelectLabel>Locations</SelectLabel>
 								{LOCATIONS_OPTIONS.map(location => (
-									<SelectItem key={location} value={location}>
-										{location}
+									<SelectItem key={location.value} value={location.value}>
+										{location.label}
 									</SelectItem>
 								))}
 							</SelectGroup>
@@ -128,8 +128,11 @@ export const PropertyFilters = () => {
 							<SelectGroup>
 								<SelectLabel>Bedrooms</SelectLabel>
 								{BEDROOM_OPTIONS.map(bedrooms => (
-									<SelectItem key={bedrooms} value={bedrooms}>
-										{bedrooms}
+									<SelectItem
+										key={bedrooms.value}
+										value={bedrooms.value.toString()}
+									>
+										{bedrooms.label}
 									</SelectItem>
 								))}
 							</SelectGroup>
@@ -153,8 +156,11 @@ export const PropertyFilters = () => {
 							<SelectGroup>
 								<SelectLabel>Bathrooms</SelectLabel>
 								{BATHROOM_OPTIONS.map(bathrooms => (
-									<SelectItem key={bathrooms} value={bathrooms}>
-										{bathrooms}
+									<SelectItem
+										key={bathrooms.value}
+										value={bathrooms.value.toString()}
+									>
+										{bathrooms.label}
 									</SelectItem>
 								))}
 							</SelectGroup>

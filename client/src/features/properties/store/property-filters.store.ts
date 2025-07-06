@@ -1,8 +1,8 @@
 import { create } from "zustand";
 
 type TPropertyFiltersDTO = {
-	page?: number;
-	limit?: number;
+	// page?: number;
+	// limit?: number;
 	type?: string;
 	minPrice?: number;
 	maxPrice?: number;
