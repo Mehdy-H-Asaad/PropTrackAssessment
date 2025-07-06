@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { usePropertyFiltersStore } from "../store/property-filters.store";
+import { usePropertyFiltersStore } from "../../store/property-filters.store";
 import { useEffect, useRef, useState } from "react";
 import { formatNumber } from "@/shared/utils/formatNumber";
 
@@ -43,7 +43,7 @@ export const PriceRange = () => {
 		<div className="space-y-2 relative" ref={priceRangeRef}>
 			<Label>Price Range</Label>
 			<Button
-				className="border w-full bg-white justify-start hover:bg-white text-[#737373]"
+				className="border w-full bg-white dark:bg-main-dark dark:text-white justify-start hover:bg-white text-[#737373]"
 				onClick={handleOpen}
 			>
 				{minPrice && maxPrice
@@ -51,7 +51,7 @@ export const PriceRange = () => {
 					: "Price Range"}
 			</Button>
 			{isOpen && (
-				<div className="flex flex-col justify-center gap-4 absolute -bottom-50 right-0 bg-[#f9f9f9] p-4 w-80 z-100">
+				<div className="flex flex-col justify-center gap-4 absolute -bottom-50 right-0 bg-[#f9f9f9] dark:bg-main-dark dark:text-white dark:border-white p-4 w-80 z-100">
 					<div className="text-lg font-semibold">Price Range</div>
 
 					<div className="flex items-center gap-4">
