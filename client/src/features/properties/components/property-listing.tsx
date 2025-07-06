@@ -3,7 +3,7 @@ import { PropertyCard } from "./property-card";
 import PropertyImage from "@/assets/imgs/property.webp";
 import { useGetInfiniteProperties } from "../hooks/useGetInfiniteProperties";
 import { Skeleton } from "@/components/ui/skeleton";
-import { PropertyFilters } from "./property-filters";
+import { PropertyFilters } from "./property-filters/property-filters";
 
 export const PropertyListing = () => {
 	const {
@@ -17,7 +17,6 @@ export const PropertyListing = () => {
 
 	const observerRef = useRef<HTMLDivElement>(null);
 
-	// Simple scroll detection
 	useEffect(() => {
 		const observer = new IntersectionObserver(
 			entries => {
@@ -38,9 +37,15 @@ export const PropertyListing = () => {
 
 	if (isLoading) {
 		return (
-			<div className="py-10 flex">
+			<div className="py-10 mt-16 flex">
 				<div className="container">
-					<div className="text-4xl font-bold">Property Listing</div>
+					<div className=" mb-10">
+						<div className="text-5xl font-bold w-fit mx-auto">
+							<span className="text-blue">
+								Our <span className="text-main-blue font-bold">Properties</span>
+							</span>
+						</div>
+					</div>
 					<PropertyFilters />
 					<div className="grid grid-cols-1 gap-4">
 						{Array.from({ length: 5 }).map((_, index) => (
@@ -59,7 +64,13 @@ export const PropertyListing = () => {
 		return (
 			<div className="py-10 flex">
 				<div className="container">
-					<div className="text-4xl font-bold">Property Listing</div>
+					<div className=" mb-10">
+						<div className="text-5xl font-bold w-fit mx-auto">
+							<span className="text-blue">
+								Our <span className="text-main-blue font-bold">Properties</span>
+							</span>
+						</div>
+					</div>
 					<PropertyFilters />
 					<div className="text-center py-10">
 						<p className="text-lg text-red-600">Error loading properties</p>
@@ -70,12 +81,18 @@ export const PropertyListing = () => {
 	}
 
 	return (
-		<div className="py-10 flex">
+		<div className="py-32 flex">
 			<div className="container">
-				<div className="text-4xl font-bold">Property Listing</div>
+				<div className=" mb-10">
+					<div className="text-5xl font-bold w-fit mx-auto">
+						<span className="text-blue">
+							Our <span className="text-main-blue font-bold">Properties</span>
+						</span>
+					</div>
+				</div>
 				<PropertyFilters />
 
-				{properties.length > 0 ? (
+				{properties && properties.length > 0 ? (
 					<div className="grid grid-cols-1 gap-4">
 						{properties.map(property => (
 							<PropertyCard
@@ -85,17 +102,14 @@ export const PropertyListing = () => {
 							/>
 						))}
 
-						{/* Scroll trigger */}
 						<div ref={observerRef} className="h-4" />
 
-						{/* Loading more indicator */}
 						{isFetchingNextPage && (
 							<div className="text-center py-4">
 								<p className="text-gray-600">Loading more properties...</p>
 							</div>
 						)}
 
-						{/* End message */}
 						{!hasNextPage && properties.length > 0 && (
 							<div className="text-center py-4">
 								<p className="text-gray-600">No more properties to load</p>
