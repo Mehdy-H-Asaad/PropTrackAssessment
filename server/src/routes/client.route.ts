@@ -4,5 +4,5 @@ import { getClientsInquiries } from "../controllers/clients/get-clients-inquirie
 
 export const clientRouter = Router();
 
-clientRouter.route("/inquiries/create-inquiry").post(createClientInquiry);
+clientRouter.route("/inquiries/:id").post(createClientInquiry);
 clientRouter.route("/inquiries").get(getClientsInquiries);

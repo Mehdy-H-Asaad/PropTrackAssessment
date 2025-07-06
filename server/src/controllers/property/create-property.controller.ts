@@ -1,6 +1,7 @@
 import { Property } from "../../models/property.model";
 import { NEXT, REQUEST, RESPONSE, EStatus } from "../../types/server.types";
 import { ApiError } from "../../utils/api-error";
+import { TCreatePropertyDTO } from "../../types/property/property.types";
 
 export const createProperty = async (
 	req: REQUEST,
@@ -18,7 +19,7 @@ export const createProperty = async (
 		bedrooms,
 		bathrooms,
 		area,
-	} = req.body;
+	}: TCreatePropertyDTO = req.body;
 
 	try {
 		if (
@@ -29,7 +30,7 @@ export const createProperty = async (
 			!location ||
 			!amenities ||
 			!propertyType ||
-			!bedrooms ||
+			bedrooms === undefined ||
 			!bathrooms ||
 			!area
 		) {
@@ -42,6 +43,10 @@ export const createProperty = async (
 
 		if (typeof price !== "number") {
 			throw new ApiError(400, "Price must be a number");
+		}
+
+		if (typeof bedrooms !== "number" || bedrooms < 0) {
+			throw new ApiError(400, "Bedrooms must be a non-negative number");
 		}
 
 		const property = await Property.create({

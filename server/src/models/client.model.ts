@@ -6,7 +6,23 @@ export const clientSchema = new Schema(
 			type: String,
 			required: true,
 		},
-		viewings: [{ type: Types.ObjectId, ref: "Viewing" }],
+		email: {
+			type: String,
+			required: true,
+		},
+		phone: {
+			type: String,
+			required: true,
+		},
+		message: {
+			type: String,
+			required: true,
+		},
+		propertyId: {
+			type: Types.ObjectId,
+			ref: "Property",
+			required: true,
+		},
 	},
 	{ timestamps: true }
 );

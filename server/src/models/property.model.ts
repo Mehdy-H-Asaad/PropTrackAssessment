@@ -23,10 +23,15 @@ export const propertySchema = new Schema(
 			type: [String],
 			required: true,
 		},
-		amenities: {
-			type: [String],
-			required: true,
-		},
+		amenities: [
+			{
+				value: {
+					type: String,
+					required: true,
+				},
+				default: [],
+			},
+		],
 		description: {
 			type: String,
 			required: true,
