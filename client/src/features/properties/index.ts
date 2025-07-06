@@ -12,9 +12,10 @@ export * from "./components/property-form/property-form";
 export * from "./components/property-listing";
 export * from "./components/update-property/update-property";
 export * from "./components/update-property/update-property-status";
-export * from "./components/suggested-properties";
+export * from "./components/suggested-properties/suggested-properties";
 export * from "./components/single-property/stacked-property-image";
 export * from "./components/property-skeleton";
+export * from "./components/suggested-properties/suggested-properties-card";
 
 // HOOKS
 export * from "./hooks/useGetProperties";
