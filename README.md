@@ -7,6 +7,11 @@ A comprehensive real estate management platform built with React, TypeScript, an
 ![MongoDB](https://img.shields.io/badge/MongoDB-6.0-green)
 ![Node.js](https://img.shields.io/badge/Node.js-18.0-green)
 
+## 📸 Project Showcase
+
+- **📹 Demo Video**: [Watch the full demo](https://drive.google.com/drive/u/2/folders/169CKa2g5kwwrFUySSbJ3nX41XXn7EzLH)
+- **🖼️ Screenshots**: [View all screenshots](https://drive.google.com/drive/folders/169CKa2g5kwwrFUySSbJ3nX41XXn7EzLH?usp=drive_link)
+
 ## 🏠 Live Demo
 
 - **Public Website**: [Coming Soon]
@@ -115,8 +120,8 @@ A comprehensive real estate management platform built with React, TypeScript, an
 
    ```env
    PORT=5000
-   MONGODB_URI=mongodb://localhost:27017/
-   DEEPSEEK_API_KEY=sk-22bd38c99ec84b34bcb9fe1817839831
+   MONGODB_URI=your_mongodb_connection_string
+   DEEPSEEK_API_KEY=your_deepseek_api_key
    ```
 
    **Client (.env)**
