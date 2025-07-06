@@ -4,12 +4,12 @@ import { FaBath, FaBed, FaPhone } from "react-icons/fa6";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { FaMapPin } from "react-icons/fa6";
 import { FaWhatsapp } from "react-icons/fa";
-import { CreateClientInquiry } from "@/features/clients/components/create-client-inquirty/create-client-inquiry";
 import { Link } from "react-router-dom";
 import propertyImage from "@/assets/imgs/property.webp";
+import { CreateClientInquiry } from "@/features/clients/components/create-client-inquiry";
 export const PropertyCard = (property: TPropertyDTO) => {
 	return (
-		<Link to={`/properties/${property._id}`}>
+		<Link to={`/properties/${property._id}`} className="w-full">
 			<div className="flex flex-col lg:flex-row gap-0 rounded-lg bg-white shadow-lg dark:bg-neutral-900">
 				<img
 					src={propertyImage}
@@ -70,7 +70,7 @@ export const PropertyCard = (property: TPropertyDTO) => {
 							<div className="text-sm font-semibold">Whatsapp</div>
 						</div>
 
-						<CreateClientInquiry id={property._id ?? ""} />
+						<CreateClientInquiry propertyId={property._id ?? ""} />
 						<div className="flex items-center gap-2 bg-[#fff6f4] #fff6f4 py-2 px-4 rounded-lg w-fit">
 							<FaPhone fill="#f74343" size={20} />
 							<div className="text-sm font-semibold">Phone</div>
