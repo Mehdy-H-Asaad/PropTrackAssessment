@@ -117,93 +117,86 @@ export function DataTable<TData, TValue>({
 				/>
 				{children}
 			</div>
-			<div className="rounded-md border border-gray-500">
-				<Table>
-					<TableHeader>
-						{table.getHeaderGroups().map(headerGroup => (
-							<TableRow
-								className=" rounded-md border border-gray-500"
-								key={headerGroup.id}
-							>
-								{headerGroup.headers.map(header => {
-									return (
-										<TableHead className="rtl:text-right" key={header.id}>
-											{header.isPlaceholder
-												? null
-												: flexRender(
-														header.column.columnDef.header,
-														header.getContext()
-												  )}
-										</TableHead>
-									);
-								})}
-							</TableRow>
-						))}
-					</TableHeader>
-					<TableBody>
-						{isLoading ? (
-							[...Array(10)].map((_, index) => (
-								<TableRow
-									key={index}
-									className="rounded-md border border-gray-500"
-								>
-									{[...Array(skeletonRows)].map((_, cellIndex) => (
-										<TableCell key={cellIndex} className="h-24 text-center">
-											<div className="space-y-2">
-												<Skeleton className="h-4 w-[100px]" />
-											</div>
+			{isLoading ? (
+				<Skeleton className="w-full h-[34rem] my-0 bg-neutral-200" />
+			) : (
+				<>
+					<div className="rounded-md border border-gray-500">
+						<Table>
+							<TableHeader>
+								{table.getHeaderGroups().map(headerGroup => (
+									<TableRow
+										className=" rounded-md border border-gray-500"
+										key={headerGroup.id}
+									>
+										{headerGroup.headers.map(header => {
+											return (
+												<TableHead className="rtl:text-right" key={header.id}>
+													{header.isPlaceholder
+														? null
+														: flexRender(
+																header.column.columnDef.header,
+																header.getContext()
+														  )}
+												</TableHead>
+											);
+										})}
+									</TableRow>
+								))}
+							</TableHeader>
+							<TableBody>
+								{isLoading ? (
+									<Skeleton className="w-full h-[34rem] my-10 bg-neutral-200" />
+								) : table.getRowModel().rows?.length ? (
+									table.getRowModel().rows.map(row => (
+										<TableRow
+											className="rounded-md border border-gray-500"
+											key={row.id}
+											data-state={row.getIsSelected() && "selected"}
+										>
+											{row.getVisibleCells().map(cell => (
+												<TableCell key={cell.id}>
+													{flexRender(
+														cell.column.columnDef.cell,
+														cell.getContext()
+													)}
+												</TableCell>
+											))}
+										</TableRow>
+									))
+								) : (
+									<TableRow>
+										<TableCell
+											colSpan={columns.length}
+											className="h-24 text-center"
+										>
+											No results.
 										</TableCell>
-									))}
-								</TableRow>
-							))
-						) : table.getRowModel().rows?.length ? (
-							table.getRowModel().rows.map(row => (
-								<TableRow
-									className="rounded-md border border-gray-500"
-									key={row.id}
-									data-state={row.getIsSelected() && "selected"}
-								>
-									{row.getVisibleCells().map(cell => (
-										<TableCell key={cell.id}>
-											{flexRender(
-												cell.column.columnDef.cell,
-												cell.getContext()
-											)}
-										</TableCell>
-									))}
-								</TableRow>
-							))
-						) : (
-							<TableRow>
-								<TableCell
-									colSpan={columns.length}
-									className="h-24 text-center"
-								>
-									No results.
-								</TableCell>
-							</TableRow>
-						)}
-					</TableBody>
-				</Table>
-			</div>
-			<div className="flex items-center justify-end space-x-2 py-4">
-				<Button
-					className="bg-transparent hover:bg-black hover:text-white duration-200 border dark:text-white text-black border-gray-500 cursor-pointer"
-					size="sm"
-					onClick={() => table.previousPage()}
-					disabled={!table.getCanPreviousPage()}
-				>
-					Previous
-				</Button>
-				<Button
-					className="bg-transparent hover:bg-black hover:text-white duration-200 border dark:text-white text-black border-gray-500 cursor-pointer"
-					size="sm"
-					onClick={() => table.nextPage()}
-					disabled={!table.getCanNextPage()}
-				>
-					Next
-				</Button>
-			</div>
+									</TableRow>
+								)}
+							</TableBody>
+						</Table>
+					</div>
+					<div className="flex items-center justify-end space-x-2 py-4">
+						<Button
+							className="bg-transparent hover:bg-black hover:text-white duration-200 border dark:text-white text-black border-gray-500 cursor-pointer"
+							size="sm"
+							onClick={() => table.previousPage()}
+							disabled={!table.getCanPreviousPage()}
+						>
+							Previous
+						</Button>
+						<Button
+							className="bg-transparent hover:bg-black hover:text-white duration-200 border dark:text-white text-black border-gray-500 cursor-pointer"
+							size="sm"
+							onClick={() => table.nextPage()}
+							disabled={!table.getCanNextPage()}
+						>
+							Next
+						</Button>
+					</div>
+				</>
+			)}
 		</div>
 	);
 }
