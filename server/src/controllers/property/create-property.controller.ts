@@ -1,5 +1,5 @@
 import { Property } from "../../models/property.model";
-import { NEXT, REQUEST, RESPONSE, TStatus } from "../../types/server.types";
+import { NEXT, REQUEST, RESPONSE, EStatus } from "../../types/server.types";
 import { ApiError } from "../../utils/api-error";
 
 export const createProperty = async (
@@ -61,7 +61,7 @@ export const createProperty = async (
 		await property.save();
 
 		res.status(201).json({
-			status: TStatus.SUCCESS,
+			status: EStatus.SUCCESS,
 			message: "Property created successfully",
 			data: property,
 		});

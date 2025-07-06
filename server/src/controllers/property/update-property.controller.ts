@@ -1,5 +1,5 @@
 import { Property } from "../../models/property.model";
-import { NEXT, REQUEST, RESPONSE, TStatus } from "../../types/server.types";
+import { NEXT, REQUEST, RESPONSE, EStatus } from "../../types/server.types";
 import { ApiError } from "../../utils/api-error";
 
 export const updateProperty = async (
@@ -46,7 +46,7 @@ export const updateProperty = async (
 			{ new: true }
 		);
 		res.status(200).json({
-			status: TStatus.SUCCESS,
+			status: EStatus.SUCCESS,
 			data: property,
 		});
 	} catch (error) {

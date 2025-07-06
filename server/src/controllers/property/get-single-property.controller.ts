@@ -1,18 +1,17 @@
 import { Property } from "../../models/property.model";
 import { NEXT, REQUEST, RESPONSE, EStatus } from "../../types/server.types";
 
-export const deleteProperty = async (
+export const getSingleProperty = async (
 	req: REQUEST,
 	res: RESPONSE,
 	next: NEXT
 ) => {
-	const { id } = req.params;
 	try {
-		await Property.findByIdAndDelete(id);
-		res.status(200).json({
-			status: EStatus.SUCCESS,
-			message: "Property deleted successfully",
-		});
+		const { id } = req.params;
+
+		const property = await Property.findById(id);
+
+		res.status(200).json({ status: EStatus.SUCCESS, data: property });
 	} catch (error) {
 		next(error);
 	}

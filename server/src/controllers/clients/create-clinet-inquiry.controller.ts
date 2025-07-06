@@ -1,5 +1,5 @@
 import { Client } from "../../models/client.model";
-import { NEXT, REQUEST, RESPONSE, TStatus } from "../../types/server.types";
+import { NEXT, REQUEST, RESPONSE, EStatus } from "../../types/server.types";
 import { ApiError } from "../../utils/api-error";
 
 export const createClientInquiry = async (
@@ -16,7 +16,7 @@ export const createClientInquiry = async (
 
 		const client = await Client.create({ name, email, phone, message });
 		res.status(201).json({
-			status: TStatus.SUCCESS,
+			status: EStatus.SUCCESS,
 			message: "Client inquiry created successfully",
 			client,
 		});

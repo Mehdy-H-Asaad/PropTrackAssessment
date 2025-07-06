@@ -1,5 +1,5 @@
 import { Client } from "../../models/client.model";
-import { NEXT, REQUEST, RESPONSE, TStatus } from "../../types/server.types";
+import { NEXT, REQUEST, RESPONSE, EStatus } from "../../types/server.types";
 
 export const getClientsInquiries = async (
 	req: REQUEST,
@@ -17,7 +17,7 @@ export const getClientsInquiries = async (
 		const clients = await Client.find(query).skip(skip).limit(limitNumber);
 
 		res.status(200).json({
-			status: TStatus.SUCCESS,
+			status: EStatus.SUCCESS,
 			message: "Clients inquiries fetched successfully",
 			clients,
 		});
