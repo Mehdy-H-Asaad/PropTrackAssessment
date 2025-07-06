@@ -6,7 +6,7 @@ import { formatCurrency } from "@/shared/utils/formatCurrecny";
 import { FaBed, FaBath, FaMapPin, FaPhone, FaWhatsapp } from "react-icons/fa6";
 import { TbRulerMeasure2 } from "react-icons/tb";
 import { CreateClientInquiry } from "@/features/clients/components/create-client-inquirty/create-client-inquiry";
-import { SuggestedProperties } from "../suggested-properties";
+import { SuggestedProperties } from "../suggested-properties/suggested-properties";
 import { PropertySkeleton } from "../property-skeleton";
 import { StackedPropertyImage } from "./stacked-property-image";
 import { NotFound } from "@/components/common";
