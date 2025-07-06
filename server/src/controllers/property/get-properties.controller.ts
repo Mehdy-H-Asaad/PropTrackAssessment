@@ -57,6 +57,9 @@ export const getProperties = async (
 	if (maxPrice && !isNaN(Number(maxPrice))) {
 		query.price = { $lte: Number(maxPrice) };
 	}
+	if (minPrice && maxPrice) {
+		query.price = { $gte: Number(minPrice), $lte: Number(maxPrice) };
+	}
 	if (active && typeof active === "string") {
 		query.active = active === "true";
 	}
