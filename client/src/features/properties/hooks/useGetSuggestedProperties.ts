@@ -5,6 +5,7 @@ export const useGetSuggestedProperties = (propertyId: string) => {
 	const { data, isFetching, error } = useApiQuery<TPropertyDTO[]>({
 		queryKey: ["properties", { propertyId }],
 		requestURL: `/properties/suggested/${propertyId}`,
+		enabled: !!propertyId,
 	});
 
 	return {

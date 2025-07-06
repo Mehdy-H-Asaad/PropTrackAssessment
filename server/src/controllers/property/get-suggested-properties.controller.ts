@@ -8,6 +8,7 @@ export const getSuggestedProperties = async (
 	next: NEXT
 ) => {
 	const { id } = req.params;
+	const { limit = 4 } = req.query;
 	try {
 		const property = await Property.findById(id);
 
@@ -19,7 +20,7 @@ export const getSuggestedProperties = async (
 			_id: { $ne: id },
 			location: property.location,
 			active: true,
-		});
+		}).limit(Number(limit));
 
 		res.status(200).json({
 			status: EStatus.SUCCESS,
